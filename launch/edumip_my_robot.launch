@@ -1,0 +1,19 @@
+<launch>
+
+  <node respawn="true" pkg="joy" type="joy_node" name="joy_node" >
+    <param name="dev" type="string" value="/dev/input/js0" />
+    <param name="deadzone" value="0.12" />
+  </node>
+
+  <param name="axis_linear" value="1" type="int"/>
+  <param name="axis_angular" value="0" type="int"/>
+  <param name="scale_linear" value="2" type="double"/>
+  <param name="scale_angular" value="2" type="double"/>
+  <node pkg="joy_twist" type="joy_twist" name="joy_twist_node"/>
+
+  <node pkg="edumip_my_robot" type="edumup_my_robot_publisher" name="edumup_my_robot_publisher" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+  <param name="robot_description" command="$(find xacro)/xacro $(find edumip_my_robot)/urdf/edumip_my_robot.urdf" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find edumip_my_robot)/rviz/edumip_my_robot.rviz --fixed-frame world" required="true" />
+
+</launch>
