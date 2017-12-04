@@ -13,7 +13,7 @@
 
   <node pkg="edumip_my_robot" type="edumup_my_robot_publisher" name="edumup_my_robot_publisher" />
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
-  <param name="robot_description" command="$(find xacro)/xacro $(find edumip_my_robot)/urdf/edumip_my_robot.urdf" />
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find edumip_my_robot)/urdf/edumip_my_robot.xacro" />
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find edumip_my_robot)/rviz/edumip_my_robot.rviz --fixed-frame world" required="true" />
 
 </launch>
